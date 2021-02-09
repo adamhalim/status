@@ -1,0 +1,16 @@
+h2 {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 3em;
+}
+a:link, a:visited{
+    color: black;
+}
+
+a {
+    text-decoration: underline;
+}
+h1 {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    font-size: 5em;
+}
