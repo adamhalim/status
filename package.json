@@ -1,0 +1,22 @@
+{
+  "name": "status",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adamhalim/status.git"
+  },
+  "author": "Adam Halim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adamhalim/status/issues"
+  },
+  "homepage": "https://github.com/adamhalim/status#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
