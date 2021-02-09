@@ -9,10 +9,15 @@ var fn = pug.compileFile('views/index.pug');
 
 app.set('view engine', 'pug');
 app.set('views', './views')
-app.use('/scripts', express.static('scripts'))
+app.use('/scripts', express.static('scripts'));
+app.use('/styles', express.static('styles'));
 
 app.get('/', function (req, res) {
-  res.render('index', { title: 'Hello', message: '0ms' });
+  res.render('index', {
+    title: 'Hello',
+    halim: 'halim.se/: \t -',
+    wsb: 'wsb.halim.se/: -'
+  });
 })
 
 app.listen(port, () => {
