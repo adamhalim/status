@@ -26,7 +26,7 @@ app.use(cookieSession({
 const authCheck = (req, res, next) => {
   if(!req.user) {
     // If user is not logged in
-    res.redirect('/')
+    res.redirect('/logout')
   } else {
     // If user is logged in
     next();
@@ -35,6 +35,12 @@ const authCheck = (req, res, next) => {
 
 app.use((req, res, next) => {
   res.locals.session = req.session;
+  if(req.session.passport.user) {
+    res.locals.login = true;
+  } else {
+    res.locals.login = false;
+  }
+  console.log(req.session.passport.user);
   next();
 });
 
@@ -44,10 +50,19 @@ app.use(passport.session());
 
 
 app.get('/', function (req, res) {
+  let session;
+  if(req.session.passport.user === undefined) {
+    console.log('logged off');
+    session = false;
+  } else {
+    console.log('logged on');
+    session = true;
+  }
   res.render('index', {
     title: 'Hello',
     halim: 'halim.se/: -',
     wsb: 'wsb.halim.se/: -',
+    login: session
   });
 })
 
@@ -57,7 +72,7 @@ app.listen(port, () => {
 
 // Google oAuth 2 redirects
 app.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
-app.get('/google/callback', passport.authenticate('google', { failureRedirect: '/' }), (req, res) => {
+app.get('/google/callback', passport.authenticate('google', { failureRedirect: '/logout' }), (req, res) => {
     // Successful authentication, redirect to status page.
     res.redirect('/');
   });
@@ -67,4 +82,3 @@ app.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/');
 });
-
