@@ -5,7 +5,6 @@ const fetch = require('node-fetch');
 const app = express();
 const port = 3000;
 
-var fn = pug.compileFile('views/index.pug');
 
 app.set('view engine', 'pug');
 app.set('views', './views')
@@ -15,7 +14,7 @@ app.use('/styles', express.static('styles'));
 app.get('/', function (req, res) {
   res.render('index', {
     title: 'Hello',
-    halim: 'halim.se/: \t -',
+    halim: 'halim.se/: -',
     wsb: 'wsb.halim.se/: -'
   });
 })
