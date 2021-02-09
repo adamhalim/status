@@ -9,8 +9,21 @@ a:link, a:visited{
 a {
     text-decoration: underline;
 }
+
 h1 {
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
     font-size: 5em;
+}
+
+#login {
+    color: black;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 5em;
+    text-align: center;
+}
+
+p {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2em;
 }
