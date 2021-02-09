@@ -4,12 +4,12 @@ html
     script(src='/scripts/script.js')
     link(rel='stylesheet' href='/styles/stylesheet.css')
   body
-    h1 Status page for Hallouminet™!
-    if session.passport.user
-      p #{session.passport.user.name}
+    if login
+      p#menu Status page for Hallouminet™!
+      p You are logged in as #{session.passport.user.name}.
       a#logout(href="/logout") Log out.
-      h2#halim= halim
-      h2#wsb= wsb
+      p#halim.link= halim
+      p#wsb.link= wsb
     else 
       div#login
         a(href="/google") Login with Google
