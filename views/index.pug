@@ -5,7 +5,11 @@ html
     link(rel='stylesheet' href='/styles/stylesheet.css')
   body
     h1 Status page for Hallouminet™!
-    p= user
-    a#logout(href="/logout") Log out.
-    h2#halim= halim
-    h2#wsb= wsb
+    if session.passport.user
+      p #{session.passport.user.name}
+      a#logout(href="/logout") Log out.
+      h2#halim= halim
+      h2#wsb= wsb
+    else 
+      div#login
+        a(href="/google") Login with Google

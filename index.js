@@ -22,6 +22,7 @@ app.use(cookieSession({
   keys: [process.env.KEY1, process.env.KEY2]
 }));
 
+// Not needed for now
 const authCheck = (req, res, next) => {
   if(!req.user) {
     // If user is not logged in
@@ -32,23 +33,23 @@ const authCheck = (req, res, next) => {
   }
 }
 
+app.use((req, res, next) => {
+  res.locals.session = req.session;
+  next();
+});
+
 // Initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
 
 
-app.get('/status', authCheck, function (req, res) {
+app.get('/', function (req, res) {
   res.render('index', {
     title: 'Hello',
     halim: 'halim.se/: -',
     wsb: 'wsb.halim.se/: -',
-    user: 'Logged in as ' + req.user.name + '.'
   });
 })
-
-app.get('/', (req, res) => {
-  res.render('homepage');
-});
 
 app.listen(port, () => {
   console.log(`Litening on ${port}.`);
@@ -58,7 +59,7 @@ app.listen(port, () => {
 app.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 app.get('/google/callback', passport.authenticate('google', { failureRedirect: '/' }), (req, res) => {
     // Successful authentication, redirect to status page.
-    res.redirect('/status/');
+    res.redirect('/');
   });
 
 
