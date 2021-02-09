@@ -34,13 +34,9 @@ const authCheck = (req, res, next) => {
 }
 
 app.use((req, res, next) => {
+  // This way, we can access our session within pug
+  // with #{session.passport}
   res.locals.session = req.session;
-  if(req.session.passport.user) {
-    res.locals.login = true;
-  } else {
-    res.locals.login = false;
-  }
-  console.log(req.session.passport.user);
   next();
 });
 
@@ -48,16 +44,20 @@ app.use((req, res, next) => {
 app.use(passport.initialize());
 app.use(passport.session());
 
-
+/**
+ * Our main endpoind. Gives us a login page if we're not logged in.
+ * When logged in, we get the status page.
+ * TODO: User personalized content.
+ */
 app.get('/', function (req, res) {
+  // Checks to see if we're logged in
   let session;
   if(req.session.passport.user === undefined) {
-    console.log('logged off');
     session = false;
   } else {
-    console.log('logged on');
     session = true;
   }
+
   res.render('index', {
     title: 'Hello',
     halim: 'halim.se/: -',
@@ -78,6 +78,9 @@ app.get('/google/callback', passport.authenticate('google', { failureRedirect: '
   });
 
 
+/**
+ * Logs out from our session
+ */
 app.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/');
