@@ -63,15 +63,13 @@ app.get('/', function (req, res) {
     session = true;
   }
 
-  let halimAccess = false;
-  let wsbAccess = false;
-  let isMe; // Used for LAN status
+  let sites = [];
+  let services = [];
 
-  // Checks to see what sites this user has access to.
+  // Checks to see what sites and services this user has access to.
   if (session) {
-    halimAccess = users[req.user.email].validSites.includes('https://halim.se/');
-    wsbAccess = users[req.user.email].validSites.includes('https://wsb.halim.se/');
-    isMe = (req.user.email === 'adam.halim@hotmail.com');
+    sites = users[req.user.email].validSites;
+    services = users[req.user.email].validServices;
   }
 
   res.render('index', {
@@ -79,9 +77,8 @@ app.get('/', function (req, res) {
     halim: 'halim.se/: -',
     wsb: 'wsb.halim.se/: -',
     login: session,
-    halimAccess: halimAccess,
-    wsbAccess: wsbAccess,
-    isMe: isMe
+    sites: sites,
+    services: services,
   });
 })
 

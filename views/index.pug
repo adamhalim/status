@@ -8,20 +8,19 @@ html
       p#menu Status page for Hallouminet™!
       p You are logged in as #{session.passport.user.name}.
       a#logout(href="/logout") Log out.
-
-      if halimAccess
-        #halim.link= halim
-      if wsbAccess
-        #wsb.link= wsb
-      if isMe
-        p.LAN Welcome, the Great one!
+      if sites
+        h2 Sites:
+        each site in sites 
+          div(id=site).link= site
+        if halimAccess
+          #halim.link= halim
+        if wsbAccess
+          #wsb.link= wsb
+      h2 Services:
+      if services
         script(src='/scripts/lanScript.js')
-        #plex.link plex - 192.168.1.203: -
-        #apache.link apache - 192.168.1.201: -
-        #halimLAN.link halimLAN - 192.168.1.204: -
-        #roadwarrior.link roadwarrior - 192.168.1.70: -
-        #homepage.link homepage - 192.168.1.199: -
-        #stlingbot.link stlingbot - 192.168.1.231: -
+        each service in services
+          div(id=service).link
     else 
       div#login
         a(href="/google") Login with Google
