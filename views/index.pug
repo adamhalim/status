@@ -13,6 +13,15 @@ html
         #halim.link= halim
       if wsbAccess
         #wsb.link= wsb
+      if isMe
+        p.LAN Welcome, the Great one!
+        script(src='/scripts/lanScript.js')
+        #plex.link plex - 192.168.1.203: -
+        #apache.link apache - 192.168.1.201: -
+        #halimLAN.link halimLAN - 192.168.1.204: -
+        #roadwarrior.link roadwarrior - 192.168.1.70: -
+        #homepage.link homepage - 192.168.1.199: -
+        #stlingbot.link stlingbot - 192.168.1.231: -
     else 
       div#login
         a(href="/google") Login with Google

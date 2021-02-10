@@ -18,3 +18,21 @@ Displays ping to services running on the network.
 ```
 
 </details>
+
+<details>
+<summary>Example data/lanSites.json</summary>
+
+```json
+{
+    "firstService": {
+        "ip": "10.0.0.1",
+        "status": false
+    },
+    "apache": {
+        "ip": "10.0.0.2",
+        "status": false
+    },
+}
+```
+
+</details>
