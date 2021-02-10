@@ -57,7 +57,7 @@ app.use(passport.session());
 app.get('/', function (req, res) {
   // Checks to see if we're logged in
   let session;
-  if (req.session.passport.user === undefined) {
+  if (req.session.passport === undefined || req.user === undefined) {
     session = false;
   } else {
     session = true;
@@ -109,9 +109,9 @@ app.get('/logout', (req, res) => {
  * Endpoint for getting LAN status.
  */
 app.get('/lan', (req, res) => {
-  if (req.user.email === 'adam.halim@hotmail.com') {
-    res.json(lanPinger.lanStatus);
-  } else {
+  if(req.user === undefined){
     res.send(401);
+  } else  if (req.user.email === 'adam.halim@hotmail.com') {
+    res.json(lanPinger.lanStatus);
   }
 });
