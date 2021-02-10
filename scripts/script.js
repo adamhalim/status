@@ -1,3 +1,8 @@
+/**
+ * Runs a GET request and returns how long it 
+ * takes to get a response.
+ * @param {URL to fetch} url 
+ */
 async function getPing(url) {
     let ping;
     url = 'https://' + url;
@@ -6,12 +11,21 @@ async function getPing(url) {
         .then(() => ping = (Date.now() - start));
     return ping;
 }
-let SMAarray = [[], []];
+// TODO: Create these dynamically.
+// I only want to add domains in ONE place and
+// the rest to be managed dynamically
+let SMAarray = [[], [], []];
 let domainArr = ['halim.se/', 'wsb.halim.se/'];
+/**
+ * This function will run 10 times per second indefinitely.
+ * What it does is it keeps a SMA of the the ping to each
+ * domain and updates the document once every 500ms
+ */
 async function pingSMA() {
     for (let i = 0; i < domainArr.length; i++) {
         setInterval(async () => {
             let ping = await getPing(domainArr[i]);
+            // SMA 10 entires (avg. past 1 sec)
             if (SMAarray[i].length == 10) {
                 SMAarray[i].pop();
             }
@@ -19,6 +33,7 @@ async function pingSMA() {
 
         }, 100);
     }
+    // Updates the document
     for (let i = 0; i < domainArr.length; i++) {
         setInterval(() => {
             let avg = Math.round(SMAarray[i].reduce((a, b) => a + b) / SMAarray[i].length);
@@ -27,6 +42,12 @@ async function pingSMA() {
     }
 }
 
+/**
+ * Updates the document
+ * @param {html ID to change} id 
+ * @param {href URL} url 
+ * @param {Ping in ms} ping 
+ */
 function changePing(id, url, ping) {
     document.getElementById(id).innerHTML = `<a href="https://${url}">${url}</a>: ` + ping + ' ms.';
 }
