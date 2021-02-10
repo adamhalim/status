@@ -22,7 +22,7 @@ passport.deserializeUser((user, done) => {
 passport.use(new GoogleStrategy({
     clientID: `${process.env.ID}`,
     clientSecret: `${process.env.SECRET}`,
-    callbackURL: "http://localhost:3000/google/callback"
+    callbackURL: `${process.env.CALLBACK_URL}`
 }, (accessToken, refreshToken, profile, done) => {
     // Use the profile information (I'm using emails) to check if user is authorized.
     // will be undefined if email not found.
