@@ -1,15 +1,18 @@
 html
   head
     title= title
-    script(src='/scripts/script.js')
     link(rel='stylesheet' href='/styles/stylesheet.css')
   body
     if login
+      script(src='/scripts/script.js')
       p#menu Status page for Hallouminet™!
       p You are logged in as #{session.passport.user.name}.
       a#logout(href="/logout") Log out.
-      p#halim.link= halim
-      p#wsb.link= wsb
+
+      if halimAccess
+        #halim.link= halim
+      if wsbAccess
+        #wsb.link= wsb
     else 
       div#login
         a(href="/google") Login with Google

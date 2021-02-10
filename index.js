@@ -3,6 +3,8 @@ const cors = require('cors')
 const passport = require('passport');
 const cookieSession = require('cookie-session');
 
+const users = require('./data/users.json');
+
 require('./passport-setup');
 
 const app = express();
@@ -58,11 +60,27 @@ app.get('/', function (req, res) {
     session = true;
   }
 
+  let halimAccess = false;
+  let wsbAccess = false;
+
+  // Checks to see what sites this user has access to.
+  // TODO: There probably is a MUCH better way to do this...
+  // Will look into this later™
+  if(session) {
+    for(let user of users) {
+      halimAccess = user.user.validSites.includes('https://halim.se/');
+      wsbAccess = user.user.validSites.includes('https://wsb.halim.se/');
+    }
+  }
+
+
   res.render('index', {
     title: 'Hello',
     halim: 'halim.se/: -',
     wsb: 'wsb.halim.se/: -',
-    login: session
+    login: session,
+    halimAccess: halimAccess,
+    wsbAccess: wsbAccess
   });
 })
 

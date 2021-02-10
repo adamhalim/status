@@ -27,7 +27,7 @@ passport.use(new GoogleStrategy({
     // Use the profile information (I'm using emails) to check if user is authorized.
     let validUser = false;
     for (let user of users) {
-        if (user.email == profile._json.email) {
+        if (user.user.email == profile._json.email) {
             // If user is authorized
             validUser = true;
         }

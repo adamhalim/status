@@ -15,9 +15,11 @@ html {
     margin-left: auto;
     margin-right: auto;
     font-family: 'Courier New', Courier, monospace;
+    height: 100%;
 }
 .link {
     font-size: 3em;
+    margin-top: 0.5em;
 }
 
 h1 {
@@ -38,6 +40,7 @@ p {
 #logout {
     font-size: 2em;
 }
+
 #menu {
     text-align: center;
     font-size: 5em;
