@@ -13,7 +13,7 @@ async function getPing(ip) {
 
 let lanStatus = lanSites;
 /**
- * Goes through each service on ../data/lanSites.json,
+ * Goes through each service on ../data/services.json,
  * pings them and checks if they're running.
  * This run once per second.
  */

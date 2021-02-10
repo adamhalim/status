@@ -28,7 +28,10 @@ app.use(cookieSession({
   keys: [process.env.KEY1, process.env.KEY2]
 }));
 
-// Not needed for now
+// Not needed for now.
+// Can be used to require authorized user 
+// before using endpoint.
+// e.g. app.get('/endpoint', authCheck, (req, res) =>...)
 const authCheck = (req, res, next) => {
   if (!req.user) {
     // If user is not logged in
@@ -53,7 +56,6 @@ app.use(passport.session());
 /**
  * Our main endpoind. Gives us a login page if we're not logged in.
  * When logged in, we get the status page.
- * TODO: User personalized content.
  */
 app.get('/', function (req, res) {
   // Checks to see if we're logged in
