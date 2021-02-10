@@ -11,7 +11,7 @@ html
       if sites
         h2 Sites:
         each site in sites 
-          div(id=site).link= site.replace(/^https?:\/\//,'')
+          div(id=site).link= site
       h2 Services:
       if services
         script(src='/scripts/lanScript.js')
