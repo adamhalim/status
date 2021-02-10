@@ -1,6 +1,6 @@
-async function getData() {
+    async function getData() {
     setInterval(async () => {
-        await fetch('http://localhost:3000/lan')
+        await fetch('https://status.halim.se/services')
         .then(response => response.json())
         .then((data) => {
             for(const [key, value] of Object.entries(data)) {

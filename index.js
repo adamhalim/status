@@ -4,6 +4,7 @@ const passport = require('passport');
 const cookieSession = require('cookie-session');
 
 const users = require('./data/users.json');
+const services = require('./data/lanSites.json');
 
 require('./passport-setup');
 const lanPinger = require('./core/lanPinger.js');
@@ -107,12 +108,19 @@ app.get('/logout', (req, res) => {
 
 /**
  * Endpoint for getting LAN status.
+ * This will send all services that a client
+ * has access to, to the client.
+ * Used by lanScript.js cient-side.
  */
-app.get('/lan', (req, res) => {
+app.get('/services', (req, res) => {
   if(req.user === undefined){
     res.send(401);
-  } else if (req.user.email === 'adam.halim@hotmail.com') {
-    res.json(lanPinger.lanStatus);
+  } else {
+    let result = {};
+    for (let service of users[req.user.email].validServices) {
+      result[service] = services[service];
+    }
+    res.send(result);
   }
 });
 
