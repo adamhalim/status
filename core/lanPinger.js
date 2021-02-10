@@ -11,6 +11,7 @@ async function getPing(ip) {
     const { stdout, stderr } = await exec(`ping -c 1 ${ip}`);
 }
 
+let lanStatus = lanSites;
 /**
  * Goes through each service on ../data/lanSites.json,
  * pings them and checks if they're running.
@@ -18,19 +19,16 @@ async function getPing(ip) {
  */
 async function aliveStatuses() {
     setInterval(async () => {
-        let lanStatus = lanSites;
         for (const [hostname, values] of Object.entries(lanStatus)) {
             await getPing(values.ip).then(() => {
                 lanStatus[hostname].status = true;
             }).catch(() => {
                 lanStatus[hostname].status = false;
-            })
+            });
         }
     }, 1000);
-
 }
 
 module.exports = {
-    getPing,
     aliveStatuses,
 }
