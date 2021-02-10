@@ -114,8 +114,8 @@ app.get('/logout', (req, res) => {
  * Endpoint for getting LAN status.
  */
 app.get('/lan', (req, res) => {
-  if(req.user.email === 'adam.halim@hotmail.com') {
-    res.send(lanPinger.lanStatus);
+  if (req.user.email === 'adam.halim@hotmail.com') {
+    res.json(lanPinger.lanStatus);
   } else {
     res.send(401);
   }
