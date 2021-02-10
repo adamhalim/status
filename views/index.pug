@@ -13,3 +13,5 @@ html
     else 
       div#login
         a(href="/google") Login with Google
+        if session.failedLogin
+          p#fail User is not authorized&#128545;.

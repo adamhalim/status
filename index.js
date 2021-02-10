@@ -72,12 +72,17 @@ app.listen(port, () => {
 
 // Google oAuth 2 redirects
 app.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
-app.get('/google/callback', passport.authenticate('google', { failureRedirect: '/logout' }), (req, res) => {
+app.get('/google/callback', passport.authenticate('google', { failureRedirect: '/fail' }), (req, res) => {
     // Successful authentication, redirect to status page.
+    req.session.failedLogin = false;
     res.redirect('/');
   });
 
 
+  app.get('/fail', (req, res) => {
+    req.session.failedLogin = true;
+    res.redirect('/');
+  })
 /**
  * Logs out from our session
  */

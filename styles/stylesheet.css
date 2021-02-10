@@ -10,35 +10,40 @@ a {
     text-decoration: underline;
 }
 
-.link {
+html {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
     font-family: 'Courier New', Courier, monospace;
+}
+.link {
     font-size: 3em;
 }
 
 h1 {
-    font-family: 'Courier New', Courier, monospace;
     text-align: center;
     font-size: 5em;
 }
 
 #login {
     color: black;
-    font-family: 'Courier New', Courier, monospace;
     font-size: 5em;
     text-align: center;
 }
 
 p {
-    font-family: 'Courier New', Courier, monospace;
     font-size: 2em;
 }
 
 #logout {
-    font-family: 'Courier New', Courier, monospace;
     font-size: 2em;
 }
 #menu {
-    font-family: 'Courier New', Courier, monospace;
     text-align: center;
     font-size: 5em;
+}
+
+#fail {
+    font-size: 0.5em;
+    color:red
 }
