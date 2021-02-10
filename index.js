@@ -74,8 +74,6 @@ app.get('/', function (req, res) {
 
   res.render('index', {
     title: 'Hello',
-    halim: 'halim.se/: -',
-    wsb: 'wsb.halim.se/: -',
     login: session,
     sites: sites,
     services: services,
