@@ -12,10 +12,6 @@ html
         h2 Sites:
         each site in sites 
           div(id=site).link= site
-        if halimAccess
-          #halim.link= halim
-        if wsbAccess
-          #wsb.link= wsb
       h2 Services:
       if services
         script(src='/scripts/lanScript.js')
