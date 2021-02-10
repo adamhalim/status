@@ -26,7 +26,7 @@ app.use(cookieSession({
 
 // Not needed for now
 const authCheck = (req, res, next) => {
-  if(!req.user) {
+  if (!req.user) {
     // If user is not logged in
     res.redirect('/logout')
   } else {
@@ -54,7 +54,7 @@ app.use(passport.session());
 app.get('/', function (req, res) {
   // Checks to see if we're logged in
   let session;
-  if(req.session.passport.user === undefined) {
+  if (req.session.passport.user === undefined) {
     session = false;
   } else {
     session = true;
@@ -64,9 +64,9 @@ app.get('/', function (req, res) {
   let wsbAccess = false;
 
   // Checks to see what sites this user has access to.
-  if(session) {
+  if (session) {
     halimAccess = users[req.user.email].validSites.includes('https://halim.se/');
-    wsbAccess =  users[req.user.email].validSites.includes('https://wsb.halim.se/');
+    wsbAccess = users[req.user.email].validSites.includes('https://wsb.halim.se/');
   }
 
   res.render('index', {
@@ -86,16 +86,16 @@ app.listen(port, () => {
 // Google oAuth 2 redirects
 app.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 app.get('/google/callback', passport.authenticate('google', { failureRedirect: '/fail' }), (req, res) => {
-    // Successful authentication, redirect to status page.
-    req.session.failedLogin = false;
-    res.redirect('/');
-  });
+  // Successful authentication, redirect to status page.
+  req.session.failedLogin = false;
+  res.redirect('/');
+});
 
 
-  app.get('/fail', (req, res) => {
-    req.session.failedLogin = true;
-    res.redirect('/');
-  })
+app.get('/fail', (req, res) => {
+  req.session.failedLogin = true;
+  res.redirect('/');
+})
 /**
  * Logs out from our session
  */
