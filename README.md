@@ -21,7 +21,7 @@ Displays ping to services running on the network.
 </details>
 
 <details>
-<summary>Example data/lanSites.json</summary>
+<summary>Example data/services.json</summary>
 
 ```json
 {
@@ -37,3 +37,4 @@ Displays ping to services running on the network.
 ```
 
 </details>
+

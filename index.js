@@ -4,7 +4,7 @@ const passport = require('passport');
 const cookieSession = require('cookie-session');
 
 const users = require('./data/users.json');
-const services = require('./data/lanSites.json');
+const services = require('./data/services.json');
 
 require('./passport-setup');
 const lanPinger = require('./core/lanPinger.js');

@@ -1,7 +1,7 @@
 const util = require('util');
 var exec = util.promisify(require('child_process').exec);
 
-const lanSites = require('../data/lanSites.json');
+const lanSites = require('../data/services.json');
 
 /**
  * Ping a server on the local network
