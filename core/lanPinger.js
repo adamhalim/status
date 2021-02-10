@@ -31,4 +31,5 @@ async function aliveStatuses() {
 
 module.exports = {
     aliveStatuses,
+    lanStatus,
 }

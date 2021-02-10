@@ -6,6 +6,9 @@ const cookieSession = require('cookie-session');
 const users = require('./data/users.json');
 
 require('./passport-setup');
+const lanPinger = require('./core/lanPinger.js');
+
+lanPinger.aliveStatuses();
 
 const app = express();
 const port = 3000;
@@ -62,11 +65,13 @@ app.get('/', function (req, res) {
 
   let halimAccess = false;
   let wsbAccess = false;
+  let isMe; // Used for LAN status
 
   // Checks to see what sites this user has access to.
   if (session) {
     halimAccess = users[req.user.email].validSites.includes('https://halim.se/');
     wsbAccess = users[req.user.email].validSites.includes('https://wsb.halim.se/');
+    isMe = (req.user.email === 'adam.halim@hotmail.com');
   }
 
   res.render('index', {
@@ -75,7 +80,8 @@ app.get('/', function (req, res) {
     wsb: 'wsb.halim.se/: -',
     login: session,
     halimAccess: halimAccess,
-    wsbAccess: wsbAccess
+    wsbAccess: wsbAccess,
+    isMe: isMe
   });
 })
 
@@ -102,4 +108,15 @@ app.get('/fail', (req, res) => {
 app.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/');
+});
+
+/**
+ * Endpoint for getting LAN status.
+ */
+app.get('/lan', (req, res) => {
+  if(req.user.email === 'adam.halim@hotmail.com') {
+    res.send(lanPinger.lanStatus);
+  } else {
+    res.send(401);
+  }
 });
