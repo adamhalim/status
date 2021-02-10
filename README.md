@@ -12,7 +12,8 @@ Displays ping to services running on the network.
         "validSites": [
             "https://example.com/",
             "https:/another.example.com/"
-        ]
+        ],
+        "validServices": ["exampleService", "anotherService"]
     }
 },
 ```
