@@ -5,7 +5,6 @@
  */
 async function getPing(url) {
     let ping;
-    url = 'https://' + url;
     let start = Date.now();
     await fetch(url, { mode: 'no-cors' })
         .then(() => ping = (Date.now() - start));
@@ -15,7 +14,7 @@ async function getPing(url) {
 // I only want to add domains in ONE place and
 // the rest to be managed dynamically
 let SMAarray = [[], [], []];
-let domainArr = ['halim.se/', 'wsb.halim.se/'];
+let domainArr = ['https://halim.se/', 'https://wsb.halim.se/'];
 /**
  * This function will run 10 times per second indefinitely.
  * What it does is it keeps a SMA of the the ping to each
@@ -49,7 +48,8 @@ async function pingSMA() {
  * @param {Ping in ms} ping 
  */
 function changePing(id, url, ping) {
-    document.getElementById(id).innerHTML = `<a href="https://${url}">${url}</a>: ` + ping + ' ms.';
+    let niceUrl = url.replace(/^https?:\/\//,'');
+    document.getElementById(id).innerHTML = `<a href="${url}">${niceUrl}</a>: ` + ping + ' ms.';
 }
 
 pingSMA();
