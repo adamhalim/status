@@ -64,15 +64,10 @@ app.get('/', function (req, res) {
   let wsbAccess = false;
 
   // Checks to see what sites this user has access to.
-  // TODO: There probably is a MUCH better way to do this...
-  // Will look into this later™
   if(session) {
-    for(let user of users) {
-      halimAccess = user.user.validSites.includes('https://halim.se/');
-      wsbAccess = user.user.validSites.includes('https://wsb.halim.se/');
-    }
+    halimAccess = users[req.user.email].validSites.includes('https://halim.se/');
+    wsbAccess =  users[req.user.email].validSites.includes('https://wsb.halim.se/');
   }
-
 
   res.render('index', {
     title: 'Hello',

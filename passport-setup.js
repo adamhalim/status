@@ -25,13 +25,8 @@ passport.use(new GoogleStrategy({
     callbackURL: "http://localhost:3000/google/callback"
 }, (accessToken, refreshToken, profile, done) => {
     // Use the profile information (I'm using emails) to check if user is authorized.
-    let validUser = false;
-    for (let user of users) {
-        if (user.user.email == profile._json.email) {
-            // If user is authorized
-            validUser = true;
-        }
-    }
+    // will be undefined if email not found.
+    let validUser = users[profile._json.email];
     if (validUser) {
         console.log(`User ${profile._json.email} logged in!`);
         done(null, profile._json);
