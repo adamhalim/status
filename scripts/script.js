@@ -1,3 +1,4 @@
+
 /**
  * Runs a GET request and returns how long it 
  * takes to get a response.
@@ -14,13 +15,29 @@ async function getPing(url) {
 // I only want to add domains in ONE place and
 // the rest to be managed dynamically
 let SMAarray = [[], [], []];
-let domainArr = ['https://halim.se/', 'https://wsb.halim.se/'];
+let domainArr = [];
+
+/**
+ * This function will make the client 
+ * go to /siies and check what sites are
+ * avaliable for it
+ */
+async function getSites() {
+    let res  =[];
+    await fetch('https://status.halim.se/sites/')
+    .then(response => response.json())
+    .then((data) => {
+        res = data;
+    });
+    return res;
+}
 /**
  * This function will run 10 times per second indefinitely.
  * What it does is it keeps a SMA of the the ping to each
  * domain and updates the document once every 500ms
  */
 async function pingSMA() {
+    domainArr = await getSites();
     for (let i = 0; i < domainArr.length; i++) {
         setInterval(async () => {
             let ping = await getPing(domainArr[i]);

@@ -111,7 +111,18 @@ app.get('/logout', (req, res) => {
 app.get('/lan', (req, res) => {
   if(req.user === undefined){
     res.send(401);
-  } else  if (req.user.email === 'adam.halim@hotmail.com') {
+  } else if (req.user.email === 'adam.halim@hotmail.com') {
     res.json(lanPinger.lanStatus);
+  }
+});
+
+/**
+ * Endpoint for getting avaliable sites
+ */
+app.get('/sites', (req, res) => {
+  if(req.user === undefined) {
+    res.send(401);
+  } else {
+    res.send(users[req.user.email].validSites);
   }
 });
