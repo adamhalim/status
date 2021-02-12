@@ -1,9 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap');
 h2 {
-    font-family: 'Courier New', Courier, monospace;
     font-size: 3em;
     margin-top: 0.2em;
     margin-bottom: 0.2em;
     font-weight: normal;
+    text-align: center;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-skip-ink: auto;
+    text-underline-offset: 3px;
 }
 a:link, a:visited{
     color: black;
@@ -14,15 +19,18 @@ a {
 }
 
 html {
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    font-family: 'Courier New', Courier, monospace;
-    height: 100%;
+    height: auto;
+    margin: 1em;
 }
+
+* {
+    font-family: 'Source Code Pro', monospace; 
+}
+
 .link {
     font-size: 2em;
     margin-top: 0.2em;
+    border-bottom: 1px solid black;
 }
 
 h1 {
@@ -45,7 +53,7 @@ p {
 }
 
 #logout {
-    font-size: 2em;
+    font-size: 1em;
 }
 
 #menu {
@@ -56,4 +64,28 @@ p {
 #fail {
     font-size: 0.5em;
     color:red
+}
+
+#services {
+    display: flex;
+    width: 1000px;
+    margin: 0 auto;
+}
+
+#serviceName {
+    width: 25vw;
+
+}
+
+#serviceStatus {
+    flex-grow: 3;
+    text-align: right;
+}
+
+.running {
+    color: #1B5E20
+}
+
+.stopped {
+    color: #b71c1c;
 }

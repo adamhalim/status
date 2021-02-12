@@ -12,12 +12,20 @@
 }
 
 function changeStatus(hostname, ip, status) {
+    let style;
     if(status) {
         status = 'Running'
+        style = 'running'
     } else {
         status = 'Stopped'
+        style = 'stopped'
     }
-    document.getElementById(hostname).innerHTML = `${hostname} - ${ip}: ${status}.`
+    console.log()
+    // Adds whitespace so that the colon is 
+    // on the same width for all IPs. 
+    // This assumes the longest IP is 13 (bad code...)
+    let whiteSpace = " ".repeat(13 - ip.length);
+    document.getElementById(hostname).innerHTML = `> ${ip}${whiteSpace}: <span class="${style}">${status}</span>`
 }
 
 getData();

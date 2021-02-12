@@ -10,13 +10,23 @@ html
       a#logout(href="/logout") Log out.
       if sites
         h2 Sites:
-        each site in sites 
-          div(id=site).link= site.replace(/^https?:\/\//,'')
+        div#services
+          div#serviceName
+            each site in sites 
+              div.link= site.replace(/^https?:\/\//,'')
+          div#serviceStatus
+            each site in sites 
+              div(id=site).link &nbsp;
       h2 Services:
       if services
         script(src='/scripts/lanScript.js')
-        each service in services
-          div(id=service).link
+        div#services
+          div#serviceName
+            each service in services
+              div.link= service
+          div#serviceStatus
+            each service in services
+                div(id=service).link &nbsp;
     else 
       div#login
         a(href="/google") Login with Google
