@@ -71,7 +71,8 @@ app.get('/', function (req, res) {
 
   // Checks to see what sites and services this user has access to.
   if (session) {
-    sites = users[req.user.email].validSites;
+    sites = (users[req.user.email].validSites).slice();
+    sites.unshift('https://status.halim.se/');
     services = users[req.user.email].validServices;
   }
 
