@@ -3,32 +3,32 @@ html
     title= title
     link(rel='stylesheet' href='/styles/stylesheet.css')
   body
-    if login
-      script(src='/scripts/script.js')
-      p#menu Status page for Hallouminet™!
-      p You are logged in as #{session.passport.user.name}.
-      a#logout(href="/logout") Log out.
-      if sites
-        h2 Sites:
-        div#services
-          div#serviceName
-            each site in sites 
-              div.link= site.replace(/^https?:\/\//,'')
-          div#serviceStatus
-            each site in sites 
-              div(id=site).link &nbsp;
-      h2 Services:
-      if services
-        script(src='/scripts/lanScript.js')
-        div#services
-          div#serviceName
-            each service in services
-              div.link= service
-          div#serviceStatus
-            each service in services
-                div(id=service).link &nbsp;
-    else 
-      div#login
-        a(href="/google") Login with Google
-        if session.failedLogin
-          p#fail User is not authorized&#128545;.
+    p#menu Status page for Hallouminet™!
+    div#wrapper
+      if login
+        script(src='/scripts/script.js')
+        p You are logged in as #{session.passport.user.name}. #[span #[a#logout(href="/logout") Log out.]]
+        if sites
+          h2 Sites:
+          div#services
+            div#serviceName
+              each site in sites 
+                div.link= site.replace(/^https?:\/\//,'')
+            div#serviceStatus
+              each site in sites 
+                div(id=site).link &nbsp;
+        h2 Services:
+        if services
+          script(src='/scripts/lanScript.js')
+          div#services
+            div#serviceName
+              each service in services
+                div.link= service
+            div#serviceStatus
+              each service in services
+                  div(id=service).link &nbsp;
+      else 
+        div#login
+          a(href="/google") Login with Google
+          if session.failedLogin
+            p#fail User is not authorized&#128545;.
