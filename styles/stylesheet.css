@@ -41,17 +41,12 @@ h1 {
 }
 
 #login {
-    color: #212121;
     font-size: 5em;
     text-align: center;
 }
 
 p {
     font-size: 2em;
-}
-
-#logout {
-    color: #212121;
 }
 
 #menu {
@@ -89,6 +84,13 @@ p {
 }
 
 #wrapper {
+    color: #212121;
     max-width: 1000px;
     margin: 0 auto;
+}
+
+#demo {
+    margin-top: 2em;
+    font-size: 2em;
+    text-align: center;
 }

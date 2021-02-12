@@ -1,0 +1,35 @@
+html
+    head
+        title Status
+        link(rel='stylesheet' href='/styles/stylesheet.css')
+        script(src='/scripts/demoScript.js')
+    body
+        div#wrapper 
+            p You are logged in as Demo User. #[span #[a#logout(href="/logout") Log out.]]
+            h2 Sites:
+            // The classes/IDs are so bad... Will fix later
+            div#services
+                div#serviceName
+                    div.link https://example.com/
+                    div.link https://another.example.com/
+                    div.link https://github.com/
+                div#serviceStatus
+                    div#demoSite1.link &nbsp;
+                    div#demoSite2.link &nbsp;
+                    div#demoSite3.link &nbsp;
+            h2 Services:
+            div#services
+                div#serviceName
+                    div.link nginx
+                    div.link mail
+                    div.link spartacus
+                    div.link titanium
+                    div.link gitlab
+
+                div#serviceStatus
+                    div.running.link Running
+                    div.running.link Running
+                    div.stopped.link Stopped
+                    div.running.link Running
+                    div.stopped.link Stopped
+

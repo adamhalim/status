@@ -3,7 +3,6 @@ html
     title= title
     link(rel='stylesheet' href='/styles/stylesheet.css')
   body
-    p#menu Status page for Hallouminet™!
     div#wrapper
       if login
         script(src='/scripts/script.js')
@@ -30,5 +29,7 @@ html
       else 
         div#login
           a(href="/google") Login with Google
+        div#demo
+          a(href="/demo") Demo page
           if session.failedLogin
             p#fail User is not authorized&#128545;.

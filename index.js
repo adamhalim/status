@@ -137,3 +137,10 @@ app.get('/sites', (req, res) => {
     res.send(users[req.user.email].validSites);
   }
 });
+
+/**
+ * Demo page with pseudo-random latencies
+ */
+app.get('/demo', (req, res) => {
+  res.render('demo');
+});
