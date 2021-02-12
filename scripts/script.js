@@ -29,6 +29,7 @@ async function getSites() {
     .then((data) => {
         res = data;
     });
+    res.unshift('https://status.halim.se/');
     return res;
 }
 /**
@@ -66,7 +67,7 @@ async function pingSMA() {
  */
 function changePing(id, url, ping) {
     let niceUrl = url.replace(/^https?:\/\//,'');
-    document.getElementById(id).innerHTML = `<a href="${url}">${niceUrl}</a>: ` + ping + ' ms.';
+    document.getElementById(id).innerHTML = `${ping}  ms.`;
 }
 
 pingSMA();
