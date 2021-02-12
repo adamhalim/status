@@ -32,6 +32,7 @@ passport.use(new GoogleStrategy({
         done(null, profile._json);
     } else {
         // Invalid user here
+        console.log(`Unauthorized user: ${profile._json.email}.`);
         done();
     }
 }));
