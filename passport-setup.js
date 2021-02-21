@@ -3,6 +3,8 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const dotenv = require('dotenv');
 
 const users = require('./data/users.json');
+require('./core/utils')();
+
 
 dotenv.config();
 
@@ -25,14 +27,13 @@ passport.use(new GoogleStrategy({
     callbackURL: `${process.env.CALLBACK_URL}`
 }, (accessToken, refreshToken, profile, done) => {
     // Use the profile information (I'm using emails) to check if user is authorized.
-    // will be undefined if email not found.
-    let validUser = users[profile._json.email];
-    if (validUser) {
+    if(validateUser(profile._json)) {
+        // Valid user here
         console.log(`User ${profile._json.email} logged in!`);
         done(null, profile._json);
     } else {
-        // Invalid user here
-        console.log(`Unauthorized user: ${profile._json.email}.`);
-        done();
+      // Invalid user here
+      console.log(`Unauthorized user: ${profile._json.email}.`);
+      done();
     }
 }));

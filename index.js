@@ -71,9 +71,9 @@ app.get('/', function (req, res) {
 
   // Checks to see what sites and services this user has access to.
   if (session) {
-    sites = (users[req.user.email].validSites).slice();
+    sites = getValidSites(req.user).slice();
     sites.unshift('https://status.halim.se/');
-    services = users[req.user.email].validServices;
+    services = getValidServices(req.user);
   }
 
   res.render('index', {
@@ -120,7 +120,7 @@ app.get('/services', (req, res) => {
     res.send(401);
   } else {
     let result = {};
-    for (let service of users[req.user.email].validServices) {
+    for (let service of getValidServices(req.user)) {
       result[service] = services[service];
     }
     res.send(result);
@@ -134,7 +134,7 @@ app.get('/sites', (req, res) => {
   if(req.user === undefined) {
     res.send(401);
   } else {
-    res.send(users[req.user.email].validSites);
+    res.send(getValidSites(req.user));
   }
 });
 
